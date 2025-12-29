@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Sister - Happy New Year!</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+        }
+
+        /* Glassmorphism Card */
+        .card {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            padding: 40px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            max-width: 380px;
+            width: 85%;
+            position: relative;
+            transform: scale(0.9);
+            opacity: 0;
+            animation: popIn 1s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+        }
+
+        @keyframes popIn {
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .hidden-content {
+            display: none;
+            animation: slideUp 1s ease;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 2.8rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #4a4a4a;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        p.message {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #333;
+            background: rgba(255,255,255,0.4);
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .btn-open {
+            background: #ff6b6b;
+            background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+            border: none;
+            padding: 15px 35px;
+            font-size: 1.1rem;
+            color: #fff;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .btn-open:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        .footer {
+            margin-top: 25px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .footer span {
+            font-family: 'Pacifico', cursive;
+            color: #e84393;
+            font-size: 1.3rem;
+        }
+
+        .emoji-icon {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card" id="mainCard">
+        <div id="initialView">
+            <div class="emoji-icon">💌</div>
+            <h2 style="color: #444; margin-bottom: 5px;">Ek Chota Sa Gift</h2>
+            <p style="color: #666; margin-bottom: 20px;">Sirf meri pyari behen ke liye</p>
+            <button class="btn-open" onclick="openGift()">Click to Open</button>
+        </div>
+
+        <div id="hiddenContent" class="hidden-content">
+            <div class="emoji-icon">👸🏻</div>
+            <h1>Happy New Year!</h1>
+            <div class="subtitle">Meri Dramebaaz Behen ✨</div>
+            
+            <p class="message">
+                Bhagwan kare yeh saal teri life mein dher saari khushiyan, chocolates, aur naye kapde lekar aaye. <br><br>
+                Tu hamesha aise hi hasti rahe 😂🤣 aise . Stay happy always!
+            </p>
+
+            <div class="footer">
+                Made with ❤️ by <span>Rudra</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        function openGift() {
+            document.getElementById('initialView').style.display = 'none';
+            document.getElementById('hiddenContent').style.display = 'block';
+
+            // Heart shaped confetti for sister
+            var duration = 3000;
+            var end = Date.now() + duration;
+
+            (function frame() {
+                confetti({
+                    particleCount: 5,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: ['#ff9a9e', '#fad0c4', '#a18cd1']
+                });
+                confetti({
+                    particleCount: 5,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: ['#ff9a9e', '#fad0c4', '#a18cd1']
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+        }
+    </script>
+</body>
+</html>
